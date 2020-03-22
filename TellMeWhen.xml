@@ -480,6 +480,34 @@
           </OnClick>
         </Scripts>
       </CheckButton>
+	  <CheckButton name="$parentTertiarySpecButton" inherits="UICheckButtonTemplate">
+        <Size>
+          <AbsDimension x="25" y="25"/>
+        </Size>
+        <Anchors>
+          <Anchor point="LEFT" relativeTo="$parent" relativePoint="LEFT">
+            <Offset>
+              <AbsDimension x="470" y="0"/>
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Scripts>
+          <OnShow>
+            TellMeWhen_TertiarySpecButton_Update(self);
+          </OnShow>
+          <OnEnter>
+            GameTooltip:SetOwner(this, "ANCHOR_TOPLEFT");
+            GameTooltip:SetText(TELLMEWHEN_UIPANEL_TOOLTIP_TERTIARYSPEC, nil, nil, nil, nil, 1);
+          </OnEnter>
+          <OnLeave>
+            GameTooltip:Hide();
+          </OnLeave>
+          <OnClick>
+            PlaySound("igMainMenuOptionCheckBoxOn");
+            TellMeWhen_TertiarySpecButton_OnClick(self);
+          </OnClick>
+        </Scripts>
+      </CheckButton>
 		</Frames>
 	</Frame>
 
@@ -583,6 +611,15 @@
             </Anchor>
           </Anchors>
         </FontString>
+		<FontString name="$parentTertiarySpecLabel" text="TELLMEWHEN_UIPANEL_TERTIARYSPEC" inherits="GameFontNormalSmall" justifyH="LEFT">
+          <Anchors>
+            <Anchor point="BOTTOM" relativeTo="$parentSubText1" relativePoint="BOTTOMLEFT">
+              <Offset>
+                <AbsDimension x="500" y="-28"/>
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </FontString>
 			</Layer>
 		</Layers>
 		<Scripts>
@@ -594,6 +631,7 @@
 				InterfaceOptionsTellMeWhenPanelOnlyInCombatLabel:SetWidth(60);
 				InterfaceOptionsTellMeWhenPanelPrimarySpecLabel:SetWidth(60);
 				InterfaceOptionsTellMeWhenPanelSecondarySpecLabel:SetWidth(60);
+				InterfaceOptionsTellMeWhenPanelTertiarySpecLabel:SetWidth(60);
 			</OnLoad>
 			<OnShow>
 				TellMeWhen_OldSettings = CopyTable(TellMeWhen_Settings);

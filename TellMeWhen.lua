@@ -45,6 +45,7 @@ TellMeWhen_Group_Defaults = {
 	OnlyInCombat	= false,
 	PrimarySpec		= true,
 	SecondarySpec	= true,
+	TertiarySpec	= true,
 };
 
 for iconID = 1, TELLMEWHEN_MAXROWS*TELLMEWHEN_MAXROWS do
@@ -109,69 +110,13 @@ function TellMeWhen_OnEvent(self, event)
 	elseif ( event == "PLAYER_TALENT_UPDATE") then
 		TellmeWhen_TalentUpdate();
 		TellMeWhen_Update();
+	elseif  (event == "ACTIVE_TALENT_GROUP_CHANGED") then
+		
 	end
 end
 
 function TellMeWhen_SafeUpgrade()
-	--only update the settings if converting to the 1.2.0+ settings scheme.
-	--can add Elseif statements if settings format changes in the future.
-	if (TellMeWhen_Settings["Version"] < "1.1.4") then
-		--fuck your oldschool settings.
-		TellMeWhen_Settings = CopyTable(TellMeWhen_Defaults);
-		TellMeWhen_Settings["Groups"][1]["Enabled"] = true;
-	elseif (TellMeWhen_Settings["Version"] < "1.2.0") then
-	TellMeWhen_Settings = TellMeWhen_AddNewSettings(TellMeWhen_Settings, TellMeWhen_Defaults);
-	--  Convert 1.1.6 to 1.2.0 settings
-	for groupID = 1, TELLMEWHEN_MAXGROUPS do
-		if (groupID < 5) then
-			oldgroupSettings = TellMeWhen_Settings["Spec"][1]["Groups"][groupID];
-			TellMeWhen_Settings["Groups"][groupID]["SecondarySpec"] = false;
-		else
-			--  get Spec2 groups 1-4 for new groups 5-8
-			local temp_groupID = groupID-4;
-			TellMeWhen_Settings["Groups"][groupID]["PrimarySpec"] = false;
-			oldgroupSettings = TellMeWhen_Settings["Spec"][2]["Groups"][temp_groupID];
-			--  need to copy old frames 1-4 positions to 5-8  (THIS DOESN'T WORK, RUN TOO EARLY DURING LOAD?)
-			-- local oldgroup = getglobal("TellMeWhen_Group"..temp_groupID);
-			-- local newgroup = getglobal("TellMeWhen_Group"..groupID);
-			-- local point, relativeTo, relativePoint, xOfs, yOfs = oldgroup:GetPoint();
-			-- newgroup:SetPoint(point,relativeTo,relativePoint,xOfs,yOfs);
-			--  end copy frame positions
-		end
-		if (oldgroupSettings) then
-			TellMeWhen_Settings["Groups"][groupID]["Enabled"] = oldgroupSettings.Enabled;
-			TellMeWhen_Settings["Groups"][groupID]["Scale"] = oldgroupSettings.Scale;
-			TellMeWhen_Settings["Groups"][groupID]["Rows"] = oldgroupSettings.Rows;
-			TellMeWhen_Settings["Groups"][groupID]["Columns"] = oldgroupSettings.Columns;
-			TellMeWhen_Settings["Groups"][groupID]["OnlyInCombat"] = oldgroupSettings.OnlyInCombat;
-		end
 
-		for iconID = 1, TELLMEWHEN_MAXROWS*TELLMEWHEN_MAXROWS do
-			if (oldgroupSettings) then
-				oldiconSettings = oldgroupSettings["Icons"][iconID];
-				if (oldiconSettings) then
-					iconSettings = TellMeWhen_Settings["Groups"][groupID]["Icons"][iconID];
-					iconSettings.BuffOrDebuff = oldiconSettings.BuffOrDebuff;
-					iconSettings.BuffShowWhen = oldiconSettings.BuffShowWhen;
-					iconSettings.CooldownShowWhen = oldiconSettings.CooldownShowWhen;
-					iconSettings.CooldownType = oldiconSettings.CooldownType;
-					iconSettings.Enabled = oldiconSettings.Enabled;
-					iconSettings.Name = oldiconSettings.Name;
-					iconSettings.OnlyMine = oldiconSettings.OnlyMine;
-					iconSettings.ShowTimer = oldiconSettings.ShowTimer;
-					iconSettings.Type = oldiconSettings.Type;
-					iconSettings.Unit = oldiconSettings.Unit;
-					iconSettings.WpnEnchantType = oldiconSettings.WpnEnchantType;
-				end
-			end
-			if (iconSettings.Name == "" and iconSettings.type ~= "wpnenchant") then
-				TellMeWhen_Settings["Groups"][groupID]["Icons"][iconID]["Enabled"] = false;
-			end
-		end
-	end
-	TellMeWhen_Settings["Spec"] = nil;  -- Remove "Spec" {}
-	-- End convert 1.1.6 to 1.2.0
-	end
 	TellMeWhen_Settings["Version"] = TELLMEWHEN_VERSION;
 end
 
@@ -243,8 +188,9 @@ function TellMeWhen_Group_Update(groupID)
 	local onlyInCombat = TellMeWhen_Settings["Groups"][groupID]["OnlyInCombat"];
 	local activePriSpec = TellMeWhen_Settings["Groups"][groupID]["PrimarySpec"];
 	local activeSecSpec = TellMeWhen_Settings["Groups"][groupID]["SecondarySpec"];
+	local activeTerSpec = TellMeWhen_Settings["Groups"][groupID]["TertiarySpec"];
 
-	if (currentSpec==1 and not activePriSpec) or (currentSpec==2 and not activeSecSpec) then
+	if (currentSpec==1 and not activePriSpec) or (currentSpec==2 and not activeSecSpec) or (currentSpec==3 and not activeTerSpec) then
 		genabled = false;
 	end
 

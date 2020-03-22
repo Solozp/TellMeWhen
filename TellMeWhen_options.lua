@@ -75,6 +75,9 @@ function TellMeWhen_SecondarySpecButton_Update(self)
 	self:SetChecked(TellMeWhen_Settings["Groups"][self:GetParent():GetID()]["SecondarySpec"]);
 end
 
+function TellMeWhen_TertiarySpecButton_Update(self)
+	self:SetChecked(TellMeWhen_Settings["Groups"][self:GetParent():GetID()]["TertiarySpec"]);
+end
 
 
 function TellMeWhen_OnlyInCombatButton_OnClick(self)
@@ -107,6 +110,17 @@ function TellMeWhen_SecondarySpecButton_OnClick(self)
 	end
 	TellMeWhen_Group_Update(groupID);
 end
+
+function TellMeWhen_TertiarySpecButton_OnClick(self)
+	local groupID = self:GetParent():GetID();
+	if ( self:GetChecked() ) then
+		TellMeWhen_Settings["Groups"][groupID]["TertiarySpec"] = true;
+	else
+		TellMeWhen_Settings["Groups"][groupID]["TertiarySpec"] = false;
+	end
+	TellMeWhen_Group_Update(groupID);
+end
+
 
 
 function TellMeWhen_LockUnlockButton_Update(self)
@@ -157,12 +171,14 @@ function TellMeWhen_UIPanelUpdate()
 		local onlyInCombatButton = getglobal(uIPanel:GetName().."Group"..groupID.."OnlyInCombatButton");
 		local PrimarySpecButton = getglobal(uIPanel:GetName().."Group"..groupID.."PrimarySpecButton");
 		local SecondarySpecButton = getglobal(uIPanel:GetName().."Group"..groupID.."SecondarySpecButton");
+		local TertiarySpecButton = getglobal(uIPanel:GetName().."Group"..groupID.."TertiarySpecButton");
 		TellMeWhen_GroupEnableButton_Update(enableButton);
 		TellMeWhen_RowColumnsWidget_Update(columnsWidget, "Columns");
 		TellMeWhen_RowColumnsWidget_Update(rowsWidget, "Rows");
 		TellMeWhen_OnlyInCombatButton_Update(onlyInCombatButton);
 		TellMeWhen_PrimarySpec_Update(PrimarySpecButton);
 		TellMeWhen_SecondarySpec_Update(SecondarySpecButton);
+		TellMeWhen_TertiarySpec_Update(TertiarySpecButton);
 	end
 	lockUnlockButton = getglobal("InterfaceOptionsTellMeWhenPanelLockUnlockButton");
 	TellMeWhen_LockUnlockButton_Update(lockUnlockButton);

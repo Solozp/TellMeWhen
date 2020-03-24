@@ -54,7 +54,7 @@ TELLMEWHEN_ICONMENU_CLEAR = "Clear settings";
 
 TELLMEWHEN_UIPANEL_SUBTEXT1 = "These options allow you to change the number, arrangement, and behavior of reminder icons.";
 TELLMEWHEN_UIPANEL_SUBTEXT2 = "Icons work when locked. When unlocked, you can move/size icon groups and right click individual icons for more settings. You can also type '/tellmewhen' or '/tmw' to lock/unlock.";
-TELLMEWHEN_UIPANEL_ICONGROUP = "Icon group ";
+TELLMEWHEN_UIPANEL_ICONGROUP = "Group ";
 TELLMEWHEN_UIPANEL_ROWS = "Rows";
 TELLMEWHEN_UIPANEL_COLUMNS = "Columns";
 TELLMEWHEN_UIPANEL_ONLYINCOMBAT = "Only show in combat";

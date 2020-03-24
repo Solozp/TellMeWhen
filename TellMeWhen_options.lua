@@ -7,15 +7,21 @@
 
 
 function TellMeWhen_SlashCommand(cmd)
+	spec = tonumber(cmd);
 	if ( cmd == TELLMEWHEN_CMD_RESET ) then
 		TellMeWhen_Reset();
 	elseif (cmd == TELLMEWHEN_CMD_OPTIONS) then
 		TellMeWhen_ShowConfig();
+	elseif type(spec) == "number" then		
+		TellMeWhen_Settings["Spec"] = spec;
+		TellmeWhen_TalentUpdate();
+		TellMeWhen_Update();
+		DEFAULT_CHAT_FRAME:AddMessage("Active talent spec "..spec);		
 	else
 		TellMeWhen_LockToggle();
 	end
 end
-
+	
 -- -----------------------
 -- INTERFACE OPTIONS PANEL
 -- -----------------------

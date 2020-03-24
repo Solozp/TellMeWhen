@@ -257,9 +257,9 @@
 					<AbsDimension x="64" y="32"/>
 				</Size>
 				<Anchors>
-					<Anchor point="CENTER" relativeTo="$parent" relativePoint="LEFT">
+					<Anchor point="CENTER" relativeTo="$parentEnableButton" relativePoint="RIGHT">
 						<Offset>
-							<AbsDimension x="164" y="0"/>
+							<AbsDimension x="80" y="0"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -329,9 +329,9 @@
 					<AbsDimension x="64" y="32"/>
 				</Size>
 				<Anchors>
-					<Anchor point="CENTER" relativeTo="$parent" relativePoint="LEFT">
+					<Anchor point="CENTER" relativeTo="$parentColumnsWidget" relativePoint="RIGHT">
 						<Offset>
-							<AbsDimension x="240" y="0"/>
+							<AbsDimension x="30" y="0"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -401,9 +401,9 @@
           <AbsDimension x="25" y="25"/>
         </Size>
         <Anchors>
-          <Anchor point="LEFT" relativeTo="$parent" relativePoint="LEFT">
+          <Anchor point="LEFT" relativeTo="$parentRowsWidget" relativePoint="RIGHT">
             <Offset>
-              <AbsDimension x="300" y="0"/>
+              <AbsDimension x="20" y="0"/>
 					  </Offset>
 				  </Anchor>
 			  </Anchors>
@@ -424,90 +424,90 @@
 				  </OnClick>
 			  </Scripts>
 		  </CheckButton>
-      <CheckButton name="$parentPrimarySpecButton" inherits="UICheckButtonTemplate">
-        <Size>
-          <AbsDimension x="25" y="25"/>
-        </Size>
-        <Anchors>
-          <Anchor point="LEFT" relativeTo="$parent" relativePoint="LEFT">
-            <Offset>
-              <AbsDimension x="370" y="0"/>
-            </Offset>
-          </Anchor>
-        </Anchors>
-        <Scripts>
-          <OnShow>
-            TellMeWhen_PrimarySpecButton_Update(self);
-          </OnShow>
-          <OnEnter>
-            GameTooltip:SetOwner(this, "ANCHOR_TOPLEFT");
-            GameTooltip:SetText(TELLMEWHEN_UIPANEL_TOOLTIP_PRIMARYSPEC, nil, nil, nil, nil, 1);
-          </OnEnter>
-          <OnLeave>
-            GameTooltip:Hide();
-          </OnLeave>
-          <OnClick>
-            PlaySound("igMainMenuOptionCheckBoxOn");
-            TellMeWhen_PrimarySpecButton_OnClick(self);
-          </OnClick>
-        </Scripts>
-      </CheckButton>
-      <CheckButton name="$parentSecondarySpecButton" inherits="UICheckButtonTemplate">
-        <Size>
-          <AbsDimension x="25" y="25"/>
-        </Size>
-        <Anchors>
-          <Anchor point="LEFT" relativeTo="$parent" relativePoint="LEFT">
-            <Offset>
-              <AbsDimension x="420" y="0"/>
-            </Offset>
-          </Anchor>
-        </Anchors>
-        <Scripts>
-          <OnShow>
-            TellMeWhen_SecondarySpecButton_Update(self);
-          </OnShow>
-          <OnEnter>
-            GameTooltip:SetOwner(this, "ANCHOR_TOPLEFT");
-            GameTooltip:SetText(TELLMEWHEN_UIPANEL_TOOLTIP_SECONDARYSPEC, nil, nil, nil, nil, 1);
-          </OnEnter>
-          <OnLeave>
-            GameTooltip:Hide();
-          </OnLeave>
-          <OnClick>
-            PlaySound("igMainMenuOptionCheckBoxOn");
-            TellMeWhen_SecondarySpecButton_OnClick(self);
-          </OnClick>
-        </Scripts>
-      </CheckButton>
-	  <CheckButton name="$parentTertiarySpecButton" inherits="UICheckButtonTemplate">
-        <Size>
-          <AbsDimension x="25" y="25"/>
-        </Size>
-        <Anchors>
-          <Anchor point="LEFT" relativeTo="$parent" relativePoint="LEFT">
-            <Offset>
-              <AbsDimension x="470" y="0"/>
-            </Offset>
-          </Anchor>
-        </Anchors>
-        <Scripts>
-          <OnShow>
-            TellMeWhen_TertiarySpecButton_Update(self);
-          </OnShow>
-          <OnEnter>
-            GameTooltip:SetOwner(this, "ANCHOR_TOPLEFT");
-            GameTooltip:SetText(TELLMEWHEN_UIPANEL_TOOLTIP_TERTIARYSPEC, nil, nil, nil, nil, 1);
-          </OnEnter>
-          <OnLeave>
-            GameTooltip:Hide();
-          </OnLeave>
-          <OnClick>
-            PlaySound("igMainMenuOptionCheckBoxOn");
-            TellMeWhen_TertiarySpecButton_OnClick(self);
-          </OnClick>
-        </Scripts>
-      </CheckButton>
+		  <CheckButton name="$parentPrimarySpecButton" inherits="UICheckButtonTemplate">
+			<Size>
+			  <AbsDimension x="25" y="25"/>
+			</Size>
+			<Anchors>
+			  <Anchor point="LEFT" relativeTo="$parentOnlyInCombatButton" relativePoint="RIGHT">
+				<Offset>
+				  <AbsDimension x="20" y="0"/>
+				</Offset>
+			  </Anchor>
+			</Anchors>
+			<Scripts>
+			  <OnShow>
+				TellMeWhen_PrimarySpecButton_Update(self);
+			  </OnShow>
+			  <OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_TOPLEFT");
+				GameTooltip:SetText(TELLMEWHEN_UIPANEL_TOOLTIP_PRIMARYSPEC, nil, nil, nil, nil, 1);
+			  </OnEnter>
+			  <OnLeave>
+				GameTooltip:Hide();
+			  </OnLeave>
+			  <OnClick>
+				PlaySound("igMainMenuOptionCheckBoxOn");
+				TellMeWhen_PrimarySpecButton_OnClick(self);
+			  </OnClick>
+			</Scripts>
+		  </CheckButton>
+		  <CheckButton name="$parentSecondarySpecButton" inherits="UICheckButtonTemplate">
+			<Size>
+			  <AbsDimension x="25" y="25"/>
+			</Size>
+			<Anchors>
+			  <Anchor point="LEFT" relativeTo="$parentPrimarySpecButton" relativePoint="RIGHT">
+				<Offset>
+				  <AbsDimension x="20" y="0"/>
+				</Offset>
+			  </Anchor>
+			</Anchors>
+			<Scripts>
+			  <OnShow>
+				TellMeWhen_SecondarySpecButton_Update(self);
+			  </OnShow>
+			  <OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_TOPLEFT");
+				GameTooltip:SetText(TELLMEWHEN_UIPANEL_TOOLTIP_SECONDARYSPEC, nil, nil, nil, nil, 1);
+			  </OnEnter>
+			  <OnLeave>
+				GameTooltip:Hide();
+			  </OnLeave>
+			  <OnClick>
+				PlaySound("igMainMenuOptionCheckBoxOn");
+				TellMeWhen_SecondarySpecButton_OnClick(self);
+			  </OnClick>
+			</Scripts>
+		  </CheckButton>
+		  <CheckButton name="$parentTertiarySpecButton" inherits="UICheckButtonTemplate">
+			<Size>
+			  <AbsDimension x="25" y="25"/>
+			</Size>
+			<Anchors>
+			  <Anchor point="LEFT" relativeTo="$parentSecondarySpecButton" relativePoint="RIGHT">
+				<Offset>
+				  <AbsDimension x="20" y="0"/>
+				</Offset>
+			  </Anchor>
+			</Anchors>
+			<Scripts>
+			  <OnShow>
+				TellMeWhen_TertiarySpecButton_Update(self);
+			  </OnShow>
+			  <OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_TOPLEFT");
+				GameTooltip:SetText(TELLMEWHEN_UIPANEL_TOOLTIP_TERTIARYSPEC, nil, nil, nil, nil, 1);
+			  </OnEnter>
+			  <OnLeave>
+				GameTooltip:Hide();
+			  </OnLeave>
+			  <OnClick>
+				PlaySound("igMainMenuOptionCheckBoxOn");
+				TellMeWhen_TertiarySpecButton_OnClick(self);
+			  </OnClick>
+			</Scripts>
+		  </CheckButton>
 		</Frames>
 	</Frame>
 
@@ -570,56 +570,56 @@
 					<Anchors>
 						<Anchor point="BOTTOM" relativeTo="$parentSubText1" relativePoint="BOTTOMLEFT">
 							<Offset>
-								<AbsDimension x="164" y="-28"/>
+								<AbsDimension x="105" y="-28"/>
 							</Offset>
 						</Anchor>
 					</Anchors>
 				</FontString>
 				<FontString name="$parentRowsLabel" text="TELLMEWHEN_UIPANEL_ROWS" inherits="GameFontNormalSmall">
 					<Anchors>
-						<Anchor point="BOTTOM" relativeTo="$parentSubText1" relativePoint="BOTTOMLEFT">
+						<Anchor point="BOTTOMLEFT" relativeTo="$parentColumnsLabel" relativePoint="BOTTOMRIGHT">
 							<Offset>
-								<AbsDimension x="240" y="-28"/>
+								<AbsDimension x="30" y="0"/>
 							</Offset>
 						</Anchor>
 					</Anchors>
 				</FontString>
-				<FontString name="$parentOnlyInCombatLabel" text="TELLMEWHEN_UIPANEL_ONLYINCOMBAT" inherits="GameFontNormalSmall" justifyH="LEFT">
+				<FontString name="$parentOnlyInCombatLabel" text="TELLMEWHEN_UIPANEL_ONLYINCOMBAT" inherits="GameFontNormalSmall" justifyH="CENTER">
 					<Anchors>
-						<Anchor point="BOTTOM" relativeTo="$parentSubText1" relativePoint="BOTTOMLEFT">
+						<Anchor point="BOTTOM" relativeTo="$parentRowsLabel" relativePoint="BOTTOMRIGHT">
 							<Offset>
-								<AbsDimension x="310" y="-28"/>
+								<AbsDimension x="40" y="0"/>
 							</Offset>
 						</Anchor>
 					</Anchors>
 				</FontString>
-        <FontString name="$parentPrimarySpecLabel" text="TELLMEWHEN_UIPANEL_PRIMARYSPEC" inherits="GameFontNormalSmall" justifyH="LEFT">
-          <Anchors>
-            <Anchor point="BOTTOM" relativeTo="$parentSubText1" relativePoint="BOTTOMLEFT">
-              <Offset>
-                <AbsDimension x="400" y="-28"/>
-              </Offset>
-            </Anchor>
-          </Anchors>
-        </FontString>
-        <FontString name="$parentSecondarySpecLabel" text="TELLMEWHEN_UIPANEL_SECONDARYSPEC" inherits="GameFontNormalSmall" justifyH="LEFT">
-          <Anchors>
-            <Anchor point="BOTTOM" relativeTo="$parentSubText1" relativePoint="BOTTOMLEFT">
-              <Offset>
-                <AbsDimension x="450" y="-28"/>
-              </Offset>
-            </Anchor>
-          </Anchors>
-        </FontString>
-		<FontString name="$parentTertiarySpecLabel" text="TELLMEWHEN_UIPANEL_TERTIARYSPEC" inherits="GameFontNormalSmall" justifyH="LEFT">
-          <Anchors>
-            <Anchor point="BOTTOM" relativeTo="$parentSubText1" relativePoint="BOTTOMLEFT">
-              <Offset>
-                <AbsDimension x="500" y="-28"/>
-              </Offset>
-            </Anchor>
-          </Anchors>
-        </FontString>
+				<FontString name="$parentPrimarySpecLabel" text="TELLMEWHEN_UIPANEL_PRIMARYSPEC" inherits="GameFontNormalSmall" justifyH="CENTER">
+				  <Anchors>
+					<Anchor point="BOTTOM" relativeTo="$parentOnlyInCombatLabel" relativePoint="BOTTOMRIGHT">
+					  <Offset>
+						<AbsDimension x="20" y="0"/>
+					  </Offset>
+					</Anchor>
+				  </Anchors>
+				</FontString>
+				<FontString name="$parentSecondarySpecLabel" text="TELLMEWHEN_UIPANEL_SECONDARYSPEC" inherits="GameFontNormalSmall" justifyH="CENTER">
+				  <Anchors>
+					<Anchor point="BOTTOM" relativeTo="$parentPrimarySpecLabel" relativePoint="BOTTOMRIGHT">
+					  <Offset>
+						<AbsDimension x="20" y="0"/>
+					  </Offset>
+					</Anchor>
+				  </Anchors>
+				</FontString>
+				<FontString name="$parentTertiarySpecLabel" text="TELLMEWHEN_UIPANEL_TERTIARYSPEC" inherits="GameFontNormalSmall" justifyH="CENTER">
+				  <Anchors>
+					<Anchor point="BOTTOM" relativeTo="$parentSecondarySpecLabel" relativePoint="BOTTOMRIGHT">
+					  <Offset>
+						<AbsDimension x="20" y="0"/>
+					  </Offset>
+					</Anchor>
+				  </Anchors>
+				</FontString>
 			</Layer>
 		</Layers>
 		<Scripts>

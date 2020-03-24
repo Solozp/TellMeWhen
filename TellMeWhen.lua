@@ -189,6 +189,7 @@ function TellMeWhen_Group_Update(groupID)
 	local activePriSpec = TellMeWhen_Settings["Groups"][groupID]["PrimarySpec"];
 	local activeSecSpec = TellMeWhen_Settings["Groups"][groupID]["SecondarySpec"];
 	local activeTerSpec = TellMeWhen_Settings["Groups"][groupID]["TertiarySpec"];
+	spec = TellMeWhen_Settings["Spec"];
 
 	if (currentSpec==1 and not activePriSpec) or (currentSpec==2 and not activeSecSpec) or (currentSpec==3 and not activeTerSpec) then
 		genabled = false;
@@ -778,7 +779,8 @@ function TellMeWhen_SplitNames(buffName,convertIDs)
 end
 
 function TellmeWhen_TalentUpdate()
-	activeSpec = GetActiveTalentGroup()
+	-- activeSpec = GetActiveTalentGroup()
+	activeSpec = spec;
 end
 
 function TellmeWhen_GetActiveTalentGroup()
